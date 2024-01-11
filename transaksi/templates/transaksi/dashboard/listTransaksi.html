@@ -1,0 +1,62 @@
+{% extends "baseDashboard.html" %}
+
+{% block page_title %}
+	Data Transaksi
+{% endblock page_title %}
+
+
+{% block contents %}
+
+  <div class="pagetitle">
+    <h1>Data Transaksi</h1>
+  </div><!-- End Page Title -->
+
+  <section class="section dashboard">
+    <div class="row">
+
+      <!-- Left side columns -->
+      <div class="col-lg-12">
+        <div class="row">
+
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                <h5 class="card-title">Transaksi</h5>
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Kode Transaksi</th>
+                      <th scope="col">Tanggal Transaksi</th>
+                      <th scope="col">Nominal</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">ID Reservasi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for transaksi in transaksiList %}
+                    <tr>
+                        <th scope="row">{{transaksi.kodeTransaksi}}</th>
+                        <th scope="row">{{transaksi.tanggalTransaksi}}</th>
+                        <th scope="row">{{transaksi.nominal}}</th>
+                        <th scope="row">{{transaksi.status}}</th>
+                        <th scope="row">{{transaksi.idReservasi}}</th>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- End Left side columns -->
+
+    </div>
+</section>
+
+	
+
+	
+
+	
+{% endblock contents %}

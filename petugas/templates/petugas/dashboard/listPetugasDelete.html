@@ -1,0 +1,46 @@
+{% extends "baseDashboard.html" %}
+
+{% block page_title %}
+    Delete Petugas
+{% endblock page_title %}
+
+
+{% block contents %}
+<div class="pagetitle">
+    <h1>Delete Data Petugas</h1>
+
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+
+        <!-- Left side columns -->
+        <div class="card">
+            <div class="card-body">
+            <br>
+
+            <!-- General Form Elements -->
+            <form method="POST">
+                {% csrf_token %}
+                <p>Apakah anda yakin menghapus petugas {{ petugas.namaPetugas }}?</p>
+                <div class="row mb-3">
+                    <button type="submit" class="btn btn-danger">Delete Data</button>
+                </div>
+                <div class="row mb-3">
+                    <a href="/petugas/" class="btn btn-primary">Kembali</a>
+                </div>
+
+            </form>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+	
+
+	
+
+	
+{% endblock contents %}

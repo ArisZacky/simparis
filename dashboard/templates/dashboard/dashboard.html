@@ -1,0 +1,96 @@
+{% extends "baseDashboard.html" %}
+
+{% block page_title %}
+	{{title}}
+{% endblock page_title %}
+
+
+{% block contents %}
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+  </div><!-- End Page Title -->
+
+  <section class="section dashboard">
+    <div class="row">
+
+      <!-- Left side columns -->
+      <div class="col-lg-12">
+        <div class="row">
+
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card sales-card">
+              <div class="card-body">
+                <h5 class="card-title">Jumlah reservasi</h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{jumlahReservasi}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">Total Pendapatan</h5>
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>${{totalPendapatan}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                <h5 class="card-title">Transaksi </h5>
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Kode Transaksi</th>
+                      <th scope="col">Nama Pelanggan</th>
+                      <th scope="col">Nama Ruangan</th>
+                      <th scope="col">Nominal</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for transaksi in transaksi_list %}
+                      <th scope="row">{{transaksi.kodeTransaksi}}</th>
+                      <td>{{transaksi.idReservasi.namaPelanggan}}</td>
+                      <td>{{transaksi.idReservasi.idRuangan.namaRuangan}}</td>
+                      <td>{{transaksi.nominal}}</td>
+                      <td>
+                        <span class="{% if transaksi.status == 'Lunas' %} badge bg-success {% elif transaksi.status == 'Proses'%} badge bg-warning {% elif transaksi.status == 'Batal' %} badge bg-danger {% endif %}">
+                          {{transaksi.status}}
+                        </span>
+                      </td>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- End Left side columns -->
+
+    </div>
+</section>
+
+	
+
+	
+
+	
+{% endblock contents %}

@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v5.9.8, mobirise.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta name="description" content="">
+
+    <title>{{title}}</title>
+
+    {% include "snippets/styles.html" %}
+
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css?family=Cormorant:300,400,500,600,700,300i,400i,500i,600i,700i&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Cormorant:300,400,500,600,700,300i,400i,500i,600i,700i&display=swap">
+        </noscript>
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,400,500,600,700,100i,200i,300i,400i,500i,600i,700i&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,200,300,400,500,600,700,100i,200i,300i,400i,500i,600i,700i&display=swap">
+        </noscript>
+
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <h1 class="p-2 text-center mb-5 text-warning">You Are Already Signed In</h1>
+    
+    {% else %}
+    <section data-bs-version="5.1" class="form7 cid-u0i0FRIQEj" id="form7-1p">
+        <div class="container">
+            <div class="mbr-section-head">
+                <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Simparis
+                        Hotel</strong></h3>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+
+                    <form method="POST" class="mbr-form form-with-styler mx-auto" data-form-title="Form Name">
+                        {% csrf_token %}
+
+                        <p class="mbr-text mbr-fonts-style align-center mb-4 display-5"><strong>Login</strong></p>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div class="dragArea row">
+                            <!-- Email -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3" data-for="email">
+                                <input type="email" name="email" placeholder="Email" data-form-field="email" class="form-control" value="" id="email-form7-1p">
+                            </div>
+                            <!-- Password -->
+                            <div data-for="password" class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                                <input type="password" name="password" placeholder="password" data-form-field="password" class="form-control" value="" id="password-form7-1p">
+                            </div>
+                            <!-- Submit -->
+                            <div class="col-auto mbr-section-btn align-center"><button type="submit" class="btn btn-primary display-4">Submit</button></div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <section data-bs-version="5.1" class="footer7 cid-tXKXVnLDcD" once="footers" id="footer7-1o">
+        <div class="container">
+            <div class="media-container-row align-center mbr-white">
+                <div class="col-12">
+                    <p class="mbr-text mb-0 mbr-fonts-style display-7">
+                        © Copyright 2024 Simparis - All Rights Reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</body>
+
+{% include "snippets/scripts.html" %}
+
+</html>

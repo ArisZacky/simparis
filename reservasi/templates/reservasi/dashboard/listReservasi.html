@@ -1,0 +1,66 @@
+{% extends "baseDashboard.html" %}
+
+{% block page_title %}
+	Data Reservasi
+{% endblock page_title %}
+
+
+{% block contents %}
+
+  <div class="pagetitle">
+    <h1>Data Reservasi</h1>
+  </div><!-- End Page Title -->
+
+  <section class="section dashboard">
+    <div class="row">
+
+      <!-- Left side columns -->
+      <div class="col-lg-12">
+        <div class="row">
+
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                <h5 class="card-title">Reservasi</h5>
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nama Pelanggan</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Check In</th>
+                      <th scope="col">Check Out</th>
+                      <th scope="col">Waktu Pesanan</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Nama Ruangan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for reservasi in reservasiList %}
+                    <tr>
+                        <th scope="row">{{reservasi.namaPelanggan}}</th>
+                        <th scope="row">{{reservasi.email}}</th>
+                        <th scope="row">{{reservasi.checkIn}}</th>
+                        <th scope="row">{{reservasi.checkOut}}</th>
+                        <th scope="row">{{reservasi.waktuPesanan}}</th>
+                        <th scope="row">{{reservasi.total}}</th>
+                        <th scope="row">{{reservasi.idRuangan}}</th>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- End Left side columns -->
+
+    </div>
+</section>
+
+	
+
+	
+
+	
+{% endblock contents %}

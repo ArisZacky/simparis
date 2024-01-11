@@ -1,0 +1,73 @@
+{% extends "baseDashboard.html" %}
+
+{% block page_title %}
+	Data Ruangan Fasilitas
+{% endblock page_title %}
+
+
+{% block contents %}
+
+  <div class="pagetitle">
+    <h1>Data Ruangan Fasilitas</h1>
+    <br>
+    <a href="{% url 'ruanganfasilitas:ruanganFasilitasListCreate' %}"><button type="button" class="btn btn-success">Tambah</button></a>
+  </div><!-- End Page Title -->
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  <section class="section dashboard">
+    <div class="row">
+
+      <!-- Left side columns -->
+      <div class="col-lg-12">
+        <div class="row">
+
+          <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                <h5 class="card-title">Ruangan Fasilitas</h5>
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Jumlah Fasilitas</th>
+                      <th scope="col">Nama Fasilitas</th>
+                      <th scope="col">Nama Ruangan</th>
+                      <th scope="col">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for ruanganFasilitas in ruanganFasilitasList %}
+                    <tr>
+                        <th scope="row">{{ruanganFasilitas.jumlahBarang}}</th>
+                        <th scope="row">{{ruanganFasilitas.idFasilitas}}</th>
+                        <th scope="row">{{ruanganFasilitas.idRuangan}}</th>
+                        <td>
+                            <a class="btn btn-warning" href="{% url 'ruanganfasilitas:ruanganFasilitasListUpdate' ruanganFasilitas.idRF %}">Edit</a>
+                            <a class="btn btn-danger" href="{% url 'ruanganfasilitas:ruanganFasilitasListDelete' ruanganFasilitas.idRF %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- End Left side columns -->
+
+    </div>
+</section>
+
+	
+
+	
+
+	
+{% endblock contents %}
