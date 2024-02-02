@@ -13,5 +13,5 @@ class Transaksi(models.Model):
     idReservasi = models.ForeignKey(Reservasi, on_delete=models.CASCADE)
     kodeTransaksi = models.CharField(max_length=13)
     tanggalTransaksi = models.DateTimeField()
-    nominal = models.IntegerField()
+    nominal = models.DecimalField(max_digits = 10, decimal_places = 0)
     status = models.CharField(choices=STATUSCHOICE, max_length=10)
