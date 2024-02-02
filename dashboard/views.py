@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
@@ -5,7 +6,7 @@ from django.views.generic import (ListView, UpdateView)
 from ruangan.models import Reservasi, Ruangan
 from transaksi.models import Transaksi
 
-from django.db.models import Sum
+from django.db.models import Sum, Count
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class DashboardView(ListView):
     model = Transaksi
@@ -30,6 +31,11 @@ class DashboardView(ListView):
 
         totalPendapatan = Reservasi.objects.aggregate(Sum('total'))['total__sum']
         context['totalPendapatan'] = totalPendapatan
+
+
+        totalRuangan = Reservasi.objects.select_related('idRuangan').values('idRuangan', 'idRuangan__namaRuangan').annotate(jumlah=Count('idRuangan')).order_by('idRuangan')
+        context['pieChart'] = {'labels': [str(row['idRuangan__namaRuangan']) for row in totalRuangan], 'series': [row['jumlah'] for row in totalRuangan]}
+
 
         if user_level == 'admin':
             context['title'] = 'Dashboard Admin Simparis'

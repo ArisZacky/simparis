@@ -6,6 +6,7 @@
 
 
 {% block contents %}
+{% load humanize %}
 
   <div class="pagetitle">
     <h1>Data Reservasi</h1>
@@ -42,7 +43,7 @@
                         <th scope="row">{{reservasi.checkIn}}</th>
                         <th scope="row">{{reservasi.checkOut}}</th>
                         <th scope="row">{{reservasi.waktuPesanan}}</th>
-                        <th scope="row">{{reservasi.total}}</th>
+                        <th scope="row">Rp.{{reservasi.total|intcomma}}</th>
                         <th scope="row">{{reservasi.idRuangan}}</th>
                     </tr>
                     {% endfor %}
